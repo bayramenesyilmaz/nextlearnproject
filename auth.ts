@@ -26,11 +26,11 @@ export const { auth, signIn, signOut } = NextAuth({
           .safeParse(credentials);
 
           if (parsedCredentials.success) {
-            alert('parsedCredentials.success TRUE');
+            console.log('parsedCredentials.success TRUE : ',parsedCredentials.success);
           } else {
-            alert('parsedCredentials.success FALSE');
+            console.log('parsedCredentials.success FALSE : ',parsedCredentials.success);
           }
-          
+
         if (parsedCredentials.success) {
           const { email, password } = parsedCredentials.data;
           const user = await getUser(email);
@@ -40,9 +40,9 @@ export const { auth, signIn, signOut } = NextAuth({
           const passwordsMatch = await bcrypt.compare(password, user.password);
 
           if (passwordsMatch) {
-            alert('passwordsMatch TRUE');
+            console.log('passwordsMatch TRUE : ',passwordsMatch);
           } else {
-            alert('passwordsMatch FALSE');
+            console.log('passwordsMatch FALSE : ',passwordsMatch);
           }
 
           if (passwordsMatch) return user;
